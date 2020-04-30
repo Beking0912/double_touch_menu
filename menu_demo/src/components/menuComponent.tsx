@@ -1,3 +1,10 @@
+/*
+ * @Author: beking 
+ * @Date: 2020-04-29 16:40:21 
+ * @Last Modified by:   beking 
+ * @Last Modified time: 2020-04-29 16:40:21 
+ */
+
 import React, { useEffect } from "react";
 import Core from "@any-touch/core";
 import Tap from "@any-touch/tap";
@@ -12,16 +19,16 @@ const MenuComponent = (props: IProps) => {
   const { cancelButtonStyle = null, children = null, contain = null } = props;
 
   useEffect(() => {
-    Core.use(Tap, { pointLength: 2 });
+    Core.use(Tap, { pointLength: 2, name:'tapTwice' });
     const handler = document.getElementById("handler");
     const at = new Core(handler);
     const drawer = document.getElementById("drawer");
-    at.on("tap", (ev) => {
+    at.on("tapTwice", (ev) => {
       drawer.style.transform = "translateY(-40vh)";
       drawer.style.transition = "all 500ms";
     });
 
-    Core.use(Tap, { pointLength: 1 });
+    Core.use(Tap, { pointLength: 1, name:'tap' });
     const cancel = document.getElementById("cancel");
     const att = new Core(cancel);
     att.on("tap", (ev) => {
